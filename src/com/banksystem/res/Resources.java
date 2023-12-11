@@ -13,6 +13,8 @@ public abstract class Resources {
     public static final Color LIGHT = Color.decode("#FFFFFF");
     public static final Color LIGHT_GRAY = new Color(0, 0, 0, (float) 0.40);
 
+    public static final String DATE_FORMAT = "MMMM dd, yyyy";
+
     public static Font createPoppinsFont(FontWeight weight, int size) {
         String fontPath = "";
         int weightCallback = Font.PLAIN;

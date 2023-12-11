@@ -130,6 +130,11 @@ public class Account extends Person {
         return transactions;
     }
 
+    public LocalDate getCreatedAt() {
+        // month / day / year
+        return this.created_at;
+    }
+
     public double getBalance() {
         return this.balance;
     }

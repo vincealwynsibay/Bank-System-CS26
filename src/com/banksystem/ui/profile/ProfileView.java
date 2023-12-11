@@ -8,7 +8,6 @@ import javax.swing.border.EmptyBorder;
 
 import com.banksystem.components.RoundedButton;
 import com.banksystem.config.Config;
-import com.banksystem.data.Account;
 import com.banksystem.data.Transaction;
 import com.banksystem.data.TransactionType;
 import com.banksystem.res.Resources;
@@ -23,6 +22,7 @@ public class ProfileView extends JFrame {
     private JLabel lblAccountId;
     private JLabel lblAge;
     private JLabel lblBalance;
+    private JLabel lblAccountType;
     private JLabel lblCreatedAt;
     private RoundedButton btnBack;
 
@@ -95,17 +95,35 @@ public class ProfileView extends JFrame {
         lblBalance.setPreferredSize(lblName.getPreferredSize());
         pnlMain.add(lblBalance);
 
-        // display list of transactions
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
-    }
 
-    public void setTransactions(ArrayList<Transaction> transactions) {
-        // add to transactions panel
+        lblAccountType = new JLabel("Account Type: ");
+        lblAccountType.setAlignmentX(Component.CENTER_ALIGNMENT);
+        lblAccountType.setHorizontalAlignment(JLabel.LEFT);
+        lblAccountType.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 16));
+        lblAccountType.setPreferredSize(lblName.getPreferredSize());
+        pnlMain.add(lblAccountType);
+
+        pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
         pnlTransactions = new JPanel();
+        pnlTransactions.setAlignmentX(Component.CENTER_ALIGNMENT);
         pnlTransactions.setLayout(new BoxLayout(pnlTransactions, BoxLayout.Y_AXIS));
         pnlTransactions.setBackground(Color.WHITE);
         pnlTransactions.setBorder(new EmptyBorder(0, 0, 0, 0));
         pnlMain.add(pnlTransactions);
+
+        pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
+
+        lblCreatedAt = new JLabel("Created At: ");
+        lblCreatedAt.setAlignmentX(Component.CENTER_ALIGNMENT);
+        lblCreatedAt.setHorizontalAlignment(JLabel.LEFT);
+        lblCreatedAt.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 16));
+        lblCreatedAt.setPreferredSize(lblName.getPreferredSize());
+        pnlMain.add(lblCreatedAt);
+
+    }
+
+    public void setTransactions(ArrayList<Transaction> transactions) {
 
         JLabel lblTransactions = new JLabel("Transactions");
         lblTransactions.setFont(Resources.createPoppinsFont(Resources.FontWeight.BOLD, 16));
@@ -141,7 +159,39 @@ public class ProfileView extends JFrame {
         lblBalance.setText("Balance: " + balance);
     }
 
+    public void setAccountType(String accountType) {
+        lblAccountType.setText("Account Type: " + accountType);
+    }
+
+    public void setCreatedAt(String createdAt) {
+        lblCreatedAt.setText("Created At: " + createdAt);
+    }
+
     public RoundedButton getBack() {
         return btnBack;
+    }
+
+    public static void main(String[] args) {
+        ProfileView view = new ProfileView();
+        view.setAccountId("123456789");
+        view.setName("John Doe");
+        view.setAge(20);
+        view.setBalance(1000);
+        view.setAccountType("Savings");
+        view.setCreatedAt("2021-01-01");
+
+        // create 3 transactions
+        Transaction t1 = new Transaction(TransactionType.DEPOSIT, 1000);
+        Transaction t2 = new Transaction(TransactionType.WITHDRAW, 500);
+        Transaction t3 = new Transaction(TransactionType.DEPOSIT, 1000);
+
+        ArrayList<Transaction> transactions = new ArrayList<>();
+        transactions.add(t1);
+        transactions.add(t2);
+        transactions.add(t3);
+
+        view.setTransactions(transactions);
+
+        view.setVisible(true);
     }
 }

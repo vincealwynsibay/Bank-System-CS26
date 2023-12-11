@@ -85,15 +85,15 @@ public class MenuView extends JFrame {
                 // btnTransfer.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0,
                 // 127)));
 
-                // btnTransactions = new JButton("TRANSACTIONS");
-                // btnTransactions.setAlignmentX(Component.CENTER_ALIGNMENT);
-                // btnTransactions.setFocusPainted(false);
-                // btnTransactions.setFont(Resources.createPoppinsFont(Resources.FontWeight.BOLD,
-                // 24));
-                // btnTransactions.setForeground(Resources.PRIMARY);
-                // btnTransactions.setBackground(Resources.LIGHT);
-                // btnTransactions.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0,
-                // 127)));
+                btnTransactions = new JButton("TRANSACTIONS");
+                btnTransactions.setAlignmentX(Component.CENTER_ALIGNMENT);
+                btnTransactions.setFocusPainted(false);
+                btnTransactions.setFont(Resources.createPoppinsFont(Resources.FontWeight.BOLD,
+                                24));
+                btnTransactions.setForeground(Resources.PRIMARY);
+                btnTransactions.setBackground(Resources.LIGHT);
+                btnTransactions.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0,
+                                127)));
 
                 btnSeeProfile = new JButton("SEE PROFILE");
                 btnSeeProfile.setAlignmentX(Component.CENTER_ALIGNMENT);

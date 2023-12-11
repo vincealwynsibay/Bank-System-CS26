@@ -1,6 +1,8 @@
 package com.banksystem.ui.register;
 
+import com.banksystem.data.SavingsAccount;
 import com.banksystem.navigation.Navigation;
+import com.banksystem.repository.Repository;
 
 public class RegisterPresenter {
     private RegisterView view;
@@ -32,6 +34,13 @@ public class RegisterPresenter {
      * Authenticates the user
      */
     private void register() {
+        // create account
+        Repository repository = Repository.getInstance();
+
+        // redirect to login
+        repository.register(view.getAccountType().getSelectedItem().toString(), view.getNameInput().getText(),
+                Integer.parseInt(view.getAge().getText()), view.getPassword().getText());
+
         view.dispose();
     }
 

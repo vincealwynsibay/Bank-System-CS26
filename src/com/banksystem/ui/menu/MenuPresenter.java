@@ -13,6 +13,7 @@ public class MenuPresenter {
         this.view.getBtnDeposit().addActionListener(e -> redirectToDeposit());
         this.view.getBtnSeeProfile().addActionListener(e -> redirectToSeeProfile());
         this.view.getBtnLogout().addActionListener(e -> logout());
+        // this.view.getBtnTransfer().addActionListener(e -> redirectToTransfer());
 
         showView();
     }
@@ -38,10 +39,16 @@ public class MenuPresenter {
         Navigation.profile();
     }
 
+    // private void redirectToTransfer() {
+    // view.dispose();
+    // Navigation.transfer();
+    // }
+
     private void logout() {
         view.dispose();
         Repository currentUser = new Repository();
         currentUser.logoutUser();
         Navigation.login();
+        // Navigation.transfer();
     }
 }

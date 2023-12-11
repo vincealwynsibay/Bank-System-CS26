@@ -13,11 +13,12 @@ public class RegisterView extends JFrame {
     private JPanel pnlMain;
     private JLabel lblHeading;
     private JLabel lblSub;
-    private HintTextField txtUserId;
+    private HintTextField txtName;
     private HintTextField txtAge;
     private HintTextField txtPassword;
     private RoundedButton btnSubmit;
     private RoundedButton btnLogin;
+    private JComboBox cmbAccountType;
 
     /**
      * Constructor where all of the components of the frame are created
@@ -56,28 +57,35 @@ public class RegisterView extends JFrame {
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
         // Add the text field for email
-        txtUserId = new HintTextField("Enter userId", 16);
-        txtUserId.setAlignmentX(Component.CENTER_ALIGNMENT);
-        txtUserId.setFont(Resources.createPoppinsFont(Resources.FontWeight.PLAIN, 12));
-        txtUserId.setMargin(new Insets(6, 6, 6, 6));
-        txtUserId.setMaximumSize(txtUserId.getPreferredSize());
-        pnlMain.add(txtUserId);
+        txtName = new HintTextField("Enter Name", 16);
+        txtName.setAlignmentX(Component.CENTER_ALIGNMENT);
+        txtName.setFont(Resources.createPoppinsFont(Resources.FontWeight.PLAIN, 12));
+        txtName.setMargin(new Insets(6, 6, 6, 6));
+        txtName.setMaximumSize(txtName.getPreferredSize());
+        pnlMain.add(txtName);
 
         txtAge = new HintTextField("Enter age", 16);
         txtAge.setAlignmentX(Component.CENTER_ALIGNMENT);
         txtAge.setFont(Resources.createPoppinsFont(Resources.FontWeight.PLAIN, 12));
         txtAge.setMargin(new Insets(6, 6, 6, 6));
-        txtAge.setMaximumSize(txtUserId.getPreferredSize());
+        txtAge.setMaximumSize(txtName.getPreferredSize());
         pnlMain.add(txtAge);
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 6)));
 
+        cmbAccountType = new JComboBox<>(new String[] { "Savings", "Checking" });
+        cmbAccountType.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cmbAccountType.setFont(Resources.createPoppinsFont(Resources.FontWeight.PLAIN, 12));
+        cmbAccountType.setMaximumSize(txtName.getPreferredSize());
+        pnlMain.add(cmbAccountType);
+
+        pnlMain.add(Box.createRigidArea(new Dimension(0, 6)));
         // Add the text field for password
         txtPassword = new HintTextField("Enter password", 16);
         txtPassword.setAlignmentX(Component.CENTER_ALIGNMENT);
         txtPassword.setFont(Resources.createPoppinsFont(Resources.FontWeight.PLAIN, 12));
         txtPassword.setMargin(new Insets(6, 6, 6, 6));
-        txtPassword.setMaximumSize(txtUserId.getPreferredSize());
+        txtPassword.setMaximumSize(txtName.getPreferredSize());
         pnlMain.add(txtPassword);
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 6)));
@@ -89,7 +97,7 @@ public class RegisterView extends JFrame {
         btnSubmit.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 12));
         btnSubmit.setForeground(Resources.LIGHT);
         btnSubmit.setBackground(Resources.PRIMARY);
-        btnSubmit.setMaximumSize(txtUserId.getPreferredSize());
+        btnSubmit.setMaximumSize(txtName.getPreferredSize());
         pnlMain.add(btnSubmit);
 
         btnLogin = new RoundedButton("No Account Yet? Register Now");
@@ -98,19 +106,24 @@ public class RegisterView extends JFrame {
         btnLogin.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 12));
         btnLogin.setForeground(Resources.PRIMARY);
         btnLogin.setBackground(Resources.LIGHT);
-        btnLogin.setMaximumSize(txtUserId.getPreferredSize());
+        btnLogin.setMaximumSize(txtName.getPreferredSize());
         pnlMain.add(btnLogin);
     }
 
-    public JTextField getUserId() {
-        return txtUserId;
+    // get combo box value
+    public JComboBox getAccountType() {
+        return cmbAccountType;
+    }
+
+    public JTextField getNameInput() {
+        return txtName;
     }
 
     public JTextField getAge() {
         return txtAge;
     }
 
-    public JTextField getTxtPassword() {
+    public JTextField getPassword() {
         return txtPassword;
     }
 

@@ -1,8 +1,11 @@
 package com.banksystem.ui.profile;
 
 import com.banksystem.data.Account;
+import com.banksystem.data.SavingsAccount;
 import com.banksystem.navigation.Navigation;
 import com.banksystem.repository.Repository;
+
+import java.time.format.DateTimeFormatter;
 
 public class ProfilePresenter {
     private ProfileView view;
@@ -32,11 +35,21 @@ public class ProfilePresenter {
             view.setAge(currentUser.getAge());
             view.setBalance(currentUser.getBalance());
             view.setAccountId(currentUser.getAccountId());
-            // view.getInterestRate().setText(String.valueOf(repository.getCurrentAccount().getInterestRate()));
-            // view.getCreatedAt().setText(repository.getCurrentAccount().getCreated_at());
-            // view.getUpdatedAt().setText(repository.getCurrentAccount().getUpdated_at());
-        } else {
 
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy");
+
+            view.setCreatedAt(currentUser.getCreatedAt().format(formatter));
+
+            if (currentUser instanceof SavingsAccount) {
+                view.setAccountType("Savings Account");
+            } else {
+                view.setAccountType("Checking Account");
+            }
+
+            view.setTransactions(currentUser.getTransactions());
+        } else {
+            view.dispose();
+            Navigation.login();
         }
     }
 }

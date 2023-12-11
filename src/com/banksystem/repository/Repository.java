@@ -2,6 +2,7 @@ package com.banksystem.repository;
 
 import java.util.ArrayList;
 import com.banksystem.data.Account;
+import com.banksystem.data.SavingsAccount;
 import com.banksystem.data.TransactionType;
 
 public class Repository {
@@ -13,7 +14,7 @@ public class Repository {
     public Repository() {
         this.accounts = new ArrayList<Account>();
         Account account = new Account("admin", 0, "admin");
-        Account account2 = new Account("admin2", 0, "admin2");
+        SavingsAccount account2 = new SavingsAccount("admin2", 0, "admin2");
         accounts.add(account);
         accounts.add(account2);
     }
@@ -28,14 +29,20 @@ public class Repository {
         return false;
     }
 
-    public void register(String accountId, int age, String password) {
-        Account account = new Account(accountId, age, password);
+    public void register(String accountType, String accountId, int age, String password) {
+        Account account;
 
         // check if accounts list contains accountId
         for (Account acc : accounts) {
             if (acc.getAccountId().equals(accountId)) {
                 return;
             }
+        }
+
+        if (accountType.toUpperCase().equals("SAVINGS")) {
+            account = new SavingsAccount(accountId, age, password);
+        } else {
+            account = new Account(accountId, age, password);
         }
 
         accounts.add(account);
