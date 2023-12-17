@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import com.banksystem.components.RoundedButton;
 import com.banksystem.config.Config;
 import com.banksystem.res.Resources;
+import com.banksystem.utils.Util;
 
 public class ProfileView extends JFrame {
     private JPanel pnlMain;
@@ -26,6 +27,7 @@ public class ProfileView extends JFrame {
         this.setTitle(Config.TITLE);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, ((Config.WINDOW_HEIGHT / 2) + 100) + 100));
+        this.setIconImage(Util.createImageIcon(this, "../../" + Resources.LOGO_PATH).getImage());
 
         pnlMain = new JPanel();
         pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));

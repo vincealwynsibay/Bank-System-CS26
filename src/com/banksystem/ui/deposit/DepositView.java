@@ -8,6 +8,7 @@ import com.banksystem.components.HintTextField;
 import com.banksystem.components.RoundedButton;
 import com.banksystem.config.Config;
 import com.banksystem.res.Resources;
+import com.banksystem.utils.Util;
 
 public class DepositView extends JFrame {
     private JLabel lblHeading;
@@ -21,16 +22,18 @@ public class DepositView extends JFrame {
         this.setTitle("Deposit");
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, (Config.WINDOW_HEIGHT / 2) + 100));
+        this.setIconImage(Util.createImageIcon(this, "../../" + Resources.LOGO_PATH).getImage());
+
         pnlMain = new JPanel();
         pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));
         pnlMain.setBackground(Color.WHITE);
         pnlMain.setBorder(new EmptyBorder(48, 48, 48, 48));
         this.getContentPane().add(pnlMain);
 
-        // TODO: back button size
         btnBack = new RoundedButton("BACK TO MENU");
         btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnBack.setFont(Resources.createPoppinsFont(Resources.FontWeight.BOLD, 10));
+        btnBack.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM,
+                10));
         btnBack.setFocusPainted(false);
         btnBack.setForeground(Resources.LIGHT_GRAY);
         btnBack.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 127)));
@@ -41,8 +44,7 @@ public class DepositView extends JFrame {
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
         lblHeading = new JLabel("Deposit");
-
-        btnBack.setFont(Resources.createPoppinsFont(Resources.FontWeight.BOLD, 25));
+        lblHeading.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 25));
         lblHeading.setAlignmentX(Component.CENTER_ALIGNMENT);
         pnlMain.add(lblHeading);
 
@@ -53,7 +55,7 @@ public class DepositView extends JFrame {
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
-        txtDepositAmount = new HintTextField("Enter Amount (₱)", 16);
+        txtDepositAmount = new HintTextField("Enter Amount", 16);
         txtDepositAmount.setAlignmentX(Component.CENTER_ALIGNMENT);
         txtDepositAmount.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 16));
         txtDepositAmount.setMargin(new Insets(12, 12, 12, 12));

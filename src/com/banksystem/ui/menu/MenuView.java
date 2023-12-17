@@ -2,6 +2,7 @@ package com.banksystem.ui.menu;
 
 import com.banksystem.config.Config;
 import com.banksystem.res.Resources;
+import com.banksystem.utils.Util;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -24,6 +25,7 @@ public class MenuView extends JFrame {
                 setTitle(Config.TITLE);
                 setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
                 this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, (Config.WINDOW_HEIGHT / 2) + 100));
+                this.setIconImage(Util.createImageIcon(this, "../../" + Resources.LOGO_PATH).getImage());
 
                 pnlMain = new JPanel();
                 pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));

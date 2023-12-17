@@ -15,6 +15,8 @@ public abstract class Resources {
 
     public static final String DATE_FORMAT = "MMMM dd, yyyy";
 
+    public static final String LOGO_PATH = "/res/images/logo.png";
+
     public static Font createPoppinsFont(FontWeight weight, int size) {
         String fontPath = "";
         int weightCallback = Font.PLAIN;

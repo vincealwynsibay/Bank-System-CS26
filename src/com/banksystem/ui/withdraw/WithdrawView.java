@@ -8,6 +8,7 @@ import com.banksystem.components.HintTextField;
 import com.banksystem.components.RoundedButton;
 import com.banksystem.config.Config;
 import com.banksystem.res.Resources;
+import com.banksystem.utils.Util;
 
 public class WithdrawView extends JFrame {
     private JLabel lblHeading;
@@ -22,12 +23,12 @@ public class WithdrawView extends JFrame {
         this.setTitle("Withdraw");
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, (Config.WINDOW_HEIGHT / 2) + 100));
+        this.setIconImage(Util.createImageIcon(this, "../../" + Resources.LOGO_PATH).getImage());
 
         pnlMain = new JPanel();
         pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));
         pnlMain.setBackground(Color.WHITE);
         pnlMain.setBorder(new EmptyBorder(48, 48, 48, 48));
-        // pnlMain.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 127)));
         this.getContentPane().add(pnlMain);
 
         btnBack = new RoundedButton("BACK TO MENU");
@@ -38,7 +39,6 @@ public class WithdrawView extends JFrame {
         btnBack.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 127)));
         Dimension btnBackDimension = new Dimension(100, 30);
         btnBack.setMaximumSize(btnBackDimension);
-        pnlMain.add(Box.createHorizontalGlue());
         pnlMain.add(btnBack);
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
@@ -78,7 +78,7 @@ public class WithdrawView extends JFrame {
         btnSubmit.setBackground(Resources.PRIMARY);
         btnSubmit.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 127)));
 
-        Dimension btnSize = new Dimension(txtWithdrawAmount.getPreferredSize().width, 50);
+        Dimension btnSize = new Dimension(txtWithdrawAmount.getPreferredSize().width, 40);
         btnSubmit.setMaximumSize(btnSize);
 
         pnlMain.add(btnSubmit);

@@ -5,6 +5,7 @@ import com.banksystem.components.RoundedButton;
 import com.banksystem.components.HintPasswordField;
 import com.banksystem.config.Config;
 import com.banksystem.res.Resources;
+import com.banksystem.utils.Util;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -24,6 +25,7 @@ public class LoginView extends JFrame {
         this.setTitle(Config.TITLE);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, (Config.WINDOW_HEIGHT / 2) + 100));
+        this.setIconImage(Util.createImageIcon(this, "../../" + Resources.LOGO_PATH).getImage());
 
         // Create the main panel
         pnlMain = new JPanel();
