@@ -21,7 +21,7 @@ public class WithdrawView extends JFrame {
     public WithdrawView() {
         this.setTitle("Withdraw");
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, 400));
+        this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, (Config.WINDOW_HEIGHT / 2) + 100));
 
         pnlMain = new JPanel();
         pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));
@@ -31,13 +31,14 @@ public class WithdrawView extends JFrame {
         this.getContentPane().add(pnlMain);
 
         btnBack = new RoundedButton("BACK TO MENU");
-        btnBack.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnBack.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 10));
         btnBack.setFocusPainted(false);
         btnBack.setForeground(Resources.LIGHT_GRAY);
         btnBack.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 127)));
         Dimension btnBackDimension = new Dimension(100, 30);
         btnBack.setMaximumSize(btnBackDimension);
+        pnlMain.add(Box.createHorizontalGlue());
         pnlMain.add(btnBack);
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
@@ -71,16 +72,14 @@ public class WithdrawView extends JFrame {
 
         btnSubmit = new RoundedButton("WITHDRAW");
         btnSubmit.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnSubmit.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 12));
+        btnSubmit.setFont(Resources.createPoppinsFont(Resources.FontWeight.BOLD, 12));
         btnSubmit.setFocusPainted(false);
         btnSubmit.setForeground(Resources.LIGHT);
         btnSubmit.setBackground(Resources.PRIMARY);
         btnSubmit.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 127)));
 
-        Dimension btnSize = new Dimension(txtWithdrawAmount.getPreferredSize().width, 30);
+        Dimension btnSize = new Dimension(txtWithdrawAmount.getPreferredSize().width, 50);
         btnSubmit.setMaximumSize(btnSize);
-
-        // btnSubmit.setMaximumSize(txtWithdrawAmount.getPreferredSize());
 
         pnlMain.add(btnSubmit);
     }

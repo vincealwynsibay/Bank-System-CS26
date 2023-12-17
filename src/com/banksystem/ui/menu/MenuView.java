@@ -1,12 +1,10 @@
 package com.banksystem.ui.menu;
 
-import javax.swing.*;
-
 import com.banksystem.config.Config;
 import com.banksystem.res.Resources;
 
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.*;
 
 public class MenuView extends JFrame {
@@ -25,7 +23,7 @@ public class MenuView extends JFrame {
         public MenuView() {
                 setTitle(Config.TITLE);
                 setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-                this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, 400));
+                this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, (Config.WINDOW_HEIGHT / 2) + 100));
 
                 pnlMain = new JPanel();
                 pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));

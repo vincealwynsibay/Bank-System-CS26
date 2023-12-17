@@ -33,8 +33,8 @@ public class DepositPresenter {
             repository.getCurrentAccount().deposit(amount);
             view.showMessage("Deposit successful");
 
-            view.dispose();
-            Navigation.menu();
+            // view.dispose();
+            // Navigation.menu();
         } catch (NumberFormatException e) {
             view.showMessage("Invalid amount");
         } catch (Exception e) {

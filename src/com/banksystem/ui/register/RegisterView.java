@@ -2,6 +2,7 @@ package com.banksystem.ui.register;
 
 import com.banksystem.components.HintTextField;
 import com.banksystem.components.RoundedButton;
+import com.banksystem.components.RoundedComboBox;
 import com.banksystem.config.Config;
 import com.banksystem.res.Resources;
 
@@ -18,7 +19,7 @@ public class RegisterView extends JFrame {
     private HintTextField txtPassword;
     private RoundedButton btnSubmit;
     private RoundedButton btnLogin;
-    private JComboBox cmbAccountType;
+    private RoundedComboBox cmbAccountType;
 
     /**
      * Constructor where all of the components of the frame are created
@@ -29,7 +30,7 @@ public class RegisterView extends JFrame {
         // Set the frame preferences
         this.setTitle(Config.TITLE);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, 400));
+        this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, (Config.WINDOW_HEIGHT / 2) + 100));
 
         // Create the main panel
         pnlMain = new JPanel();
@@ -73,7 +74,8 @@ public class RegisterView extends JFrame {
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 6)));
 
-        cmbAccountType = new JComboBox<>(new String[] { "Savings", "Checking" });
+        cmbAccountType = new RoundedComboBox<>(new String[] { "Checking", "Savings" });
+        cmbAccountType.setBackground(Color.WHITE);
         cmbAccountType.setAlignmentX(Component.CENTER_ALIGNMENT);
         cmbAccountType.setFont(Resources.createPoppinsFont(Resources.FontWeight.PLAIN, 12));
         cmbAccountType.setMaximumSize(txtName.getPreferredSize());
@@ -100,7 +102,7 @@ public class RegisterView extends JFrame {
         btnSubmit.setMaximumSize(txtName.getPreferredSize());
         pnlMain.add(btnSubmit);
 
-        btnLogin = new RoundedButton("No Account Yet? Register Now");
+        btnLogin = new RoundedButton("Have an account? Login Now");
         btnLogin.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnLogin.setFocusPainted(false);
         btnLogin.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 12));
@@ -138,4 +140,5 @@ public class RegisterView extends JFrame {
     public void showMessage(String message) {
         JOptionPane.showMessageDialog(this, message);
     }
+
 }

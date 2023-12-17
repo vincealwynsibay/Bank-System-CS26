@@ -31,4 +31,8 @@ public class Transaction {
     public LocalDate getCreatedAt() {
         return this.created_at;
     }
+
+    public String toString() {
+        return this.transactionType + " " + this.amount + " " + this.created_at;
+    }
 }

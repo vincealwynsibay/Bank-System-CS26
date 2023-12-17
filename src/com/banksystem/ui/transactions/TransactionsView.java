@@ -16,12 +16,13 @@ public class TransactionsView extends JFrame {
     private JLabel lblSub;
     private RoundedButton btnBack;
     private JPanel pnlMain;
-    private JPanel pnlTransactions;
+    private JList<String> itemList;
+    private JScrollPane scrollPane;
 
     public TransactionsView() {
         this.setTitle(Config.TITLE);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, 400));
+        this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, (Config.WINDOW_HEIGHT / 2) + 100));
 
         pnlMain = new JPanel();
         pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));
@@ -54,12 +55,15 @@ public class TransactionsView extends JFrame {
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
-        pnlTransactions = new JPanel();
-        pnlTransactions.setLayout(new BoxLayout(pnlTransactions, BoxLayout.Y_AXIS));
-        pnlTransactions.setBackground(Color.WHITE);
-        pnlTransactions.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 127)));
-        pnlMain.add(pnlTransactions);
+        // pnlTransactions = new JPanel();
+        // pnlTransactions.setLayout(new BoxLayout(pnlTransactions, BoxLayout.Y_AXIS));
+        // pnlTransactions.setBackground(Color.WHITE);
+        // pnlTransactions.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0,
+        // 127)));
+        // pnlMain.add(pnlTransactions);
+        scrollPane = new JScrollPane(itemList);
 
+        pnlMain.add(scrollPane);
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
         this.pack();
@@ -67,15 +71,14 @@ public class TransactionsView extends JFrame {
     }
 
     public void setTransactions(ArrayList<Transaction> transactions) {
-
+        DefaultListModel<String> listModel = new DefaultListModel<>();
         for (Transaction transaction : transactions) {
-            JLabel lblTransaction = new JLabel(
-                    transaction.getTransactionType() + " : " + "$" + transaction.getAmount());
-            lblTransaction.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM,
-                    14));
-            pnlTransactions.add(lblTransaction);
-            pnlTransactions.add(Box.createRigidArea(new Dimension(0, 8)));
+            String transactionDetail = transaction.getTransactionType() + " : " + "$" + transaction.getAmount();
+            listModel.addElement(transactionDetail);
         }
+        JList<String> transactionsList = new JList<>(listModel);
+        transactionsList.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 14));
+        scrollPane.setViewportView(transactionsList);
     }
 
     public RoundedButton getBtnBack() {

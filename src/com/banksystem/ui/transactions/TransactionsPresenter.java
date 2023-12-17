@@ -10,6 +10,7 @@ public class TransactionsPresenter {
         this.view = view;
 
         this.view.getBtnBack().addActionListener(e -> redirectToMenu());
+
         showView();
     }
 
@@ -32,6 +33,7 @@ public class TransactionsPresenter {
         }
 
         view.setTransactions(repository.getTransactions());
+
     }
 
 }

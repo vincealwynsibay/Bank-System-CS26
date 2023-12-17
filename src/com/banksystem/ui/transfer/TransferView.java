@@ -23,7 +23,7 @@ public class TransferView extends JFrame {
     public TransferView() {
         this.setTitle(Config.TITLE);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, 400));
+        this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, ((Config.WINDOW_HEIGHT / 2) + 100) + 100));
 
         pnlMain = new JPanel();
         pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));
@@ -33,7 +33,7 @@ public class TransferView extends JFrame {
         this.getContentPane().add(pnlMain);
 
         btnBack = new RoundedButton("BACK TO MENU");
-        btnBack.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnBack.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 10));
         btnBack.setFocusPainted(false);
         btnBack.setForeground(Resources.LIGHT_GRAY);
@@ -57,21 +57,19 @@ public class TransferView extends JFrame {
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
         txtTransferAmount = new HintTextField("Enter Amount", 16);
-
         txtTransferAmount.setAlignmentX(Component.CENTER_ALIGNMENT);
         txtTransferAmount.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 16));
-        txtTransferAmount.setMargin(new Insets(12, 12, 12, 12));
+        txtTransferAmount.setMargin(new Insets(8, 8, 8, 8));
         txtTransferAmount.setMaximumSize(txtTransferAmount.getPreferredSize());
         pnlMain.add(txtTransferAmount);
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 16)));
 
         txtDestinationAccount = new HintTextField("Enter Destination Account", 16);
-
         txtDestinationAccount.setAlignmentX(Component.CENTER_ALIGNMENT);
         txtDestinationAccount.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 16));
-        txtDestinationAccount.setMargin(new Insets(12, 12, 12, 12));
-        txtDestinationAccount.setMaximumSize(txtDestinationAccount.getPreferredSize());
+        txtDestinationAccount.setMargin(new Insets(8, 8, 8, 8));
+        txtDestinationAccount.setMaximumSize(txtTransferAmount.getPreferredSize());
         pnlMain.add(txtDestinationAccount);
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 16)));
@@ -86,13 +84,13 @@ public class TransferView extends JFrame {
 
         btnSubmit = new RoundedButton("TRANSFER");
         btnSubmit.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnSubmit.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 12));
+        btnSubmit.setFont(Resources.createPoppinsFont(Resources.FontWeight.BOLD, 12));
         btnSubmit.setFocusPainted(false);
         btnSubmit.setForeground(Resources.LIGHT);
         btnSubmit.setBackground(Resources.PRIMARY);
         btnSubmit.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 127)));
 
-        Dimension btnSize = new Dimension(txtTransferAmount.getPreferredSize().width, 30);
+        Dimension btnSize = new Dimension(txtTransferAmount.getPreferredSize().width, 40);
         btnSubmit.setMaximumSize(btnSize);
 
         pnlMain.add(btnSubmit);
@@ -120,6 +118,11 @@ public class TransferView extends JFrame {
 
     public void showMessage(String message) {
         JOptionPane.showMessageDialog(this, message);
+    }
+
+    public static void main(String[] args) {
+        TransferView view = new TransferView();
+        view.setVisible(true);
     }
 
 }

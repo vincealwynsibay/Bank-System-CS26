@@ -23,7 +23,7 @@ public class LoginView extends JFrame {
         // Set the frame preferences
         this.setTitle(Config.TITLE);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, 400));
+        this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, (Config.WINDOW_HEIGHT / 2) + 100));
 
         // Create the main panel
         pnlMain = new JPanel();
@@ -68,8 +68,7 @@ public class LoginView extends JFrame {
         txtPassword.setMaximumSize(txtName.getPreferredSize());
         pnlMain.add(txtPassword);
 
-        pnlMain.add(Box.createRigidArea(new Dimension(0, 6)));
-
+        pnlMain.add(Box.createRigidArea(new Dimension(0, 16)));
         // Add the submit button
         btnSubmit = new RoundedButton("LOGIN");
         btnSubmit.setAlignmentX(Component.CENTER_ALIGNMENT);
