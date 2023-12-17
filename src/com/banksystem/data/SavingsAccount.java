@@ -1,10 +1,8 @@
 package com.banksystem.data;
 
-import java.util.Calendar;
-
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.temporal.ChronoUnit;
+
+import com.banksystem.repository.Repository;
 
 public class SavingsAccount extends Account {
     int moneyWithdrawalLimit;
@@ -15,9 +13,9 @@ public class SavingsAccount extends Account {
         this.interestRate = 5.0;
     }
 
-    public SavingsAccount(String accountId, String name, int age, String password, double balance, double interestRate,
+    public SavingsAccount(String id, String name, int age, String password, double balance, double interestRate,
             LocalDate createdAt, LocalDate updatedAt) {
-        super(accountId, name, age, password, balance, interestRate, createdAt, updatedAt);
+        super(id, name, age, password, balance, interestRate, createdAt, updatedAt);
         this.moneyWithdrawalLimit = 10000;
     }
 
@@ -37,7 +35,8 @@ public class SavingsAccount extends Account {
         }
 
         // get the total amount of withdraw transactions
-        for (Transaction transaction : this.getTransactions()) {
+        Repository repository = Repository.getInstance();
+        for (Transaction transaction : repository.getTransactions()) {
             if (transaction.getTransactionType() == TransactionType.WITHDRAW) {
                 totalWithdrawAmount += transaction.getAmount();
             }

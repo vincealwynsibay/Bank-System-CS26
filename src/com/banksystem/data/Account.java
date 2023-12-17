@@ -1,14 +1,11 @@
 package com.banksystem.data;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-
-import com.banksystem.db.DatabaseConnection;
+import com.banksystem.repository.Repository;
 
 import java.time.LocalDate;
 
 public class Account extends Person {
-    protected String accountId;
+    protected String id;
     protected String password;
     protected double balance;
     protected double interestRate;
@@ -16,51 +13,29 @@ public class Account extends Person {
     protected LocalDate created_at;
     protected LocalDate updated_at;
 
-    protected ArrayList<Transaction> transactions;
-
-    public static int numOfAccount;
-
     public Account(String name, int age, String password) {
         super(name, age);
 
-        this.accountId = generateAccountId();
         this.password = password;
         this.balance = 0;
         this.interestRate = 0.025;
 
         this.created_at = LocalDate.now();
         this.updated_at = LocalDate.now();
-
-        this.transactions = new ArrayList<>();
-        // this.loans = new ArrayList<>();
     }
 
     // para ni siya sa pag load usab sa account gikan sa database
-    public Account(String accountId, String name, int age, String password, double balance, double interestRate,
+    public Account(String id, String name, int age, String password, double balance, double interestRate,
             LocalDate createdAt, LocalDate updatedAt) {
         super(name, age);
 
-        this.accountId = accountId;
+        this.id = id;
         this.password = password;
         this.balance = balance;
         this.interestRate = interestRate;
 
         this.created_at = createdAt;
         this.updated_at = updatedAt;
-
-        this.transactions = new ArrayList<>();
-    }
-
-    // 6 digits number (if single digit pad 5 zeros in front of it)
-    public String generateAccountId() {
-        numOfAccount++;
-        String accountId = String.valueOf(numOfAccount);
-
-        while (accountId.length() < 6) {
-            accountId = "0" + accountId;
-        }
-
-        return accountId;
     }
 
     // WITHDRAW money from the account
@@ -83,6 +58,18 @@ public class Account extends Person {
         addTransaction(TransactionType.DEPOSIT, amount);
     }
 
+    public double transferMoney(double amount) {
+
+        if ((this.balance - amount) < 0) {
+            return -1;
+        }
+
+        this.balance -= amount;
+
+        addTransaction(TransactionType.TRANSFER, -amount);
+        return this.balance;
+    }
+
     // RECEIVE money from another account (acts like deposit but this is made for
     // transactions list purposes)
     public void receiveMoney(double amount) {
@@ -97,12 +84,11 @@ public class Account extends Person {
     protected void addTransaction(TransactionType type, double amount) {
         this.updated_at = LocalDate.now();
         Transaction newTransaction = new Transaction(type, amount);
-        this.transactions.add(newTransaction);
 
         // update record after every transactions (the balance and the
         // transactions list)
-        DatabaseConnection db = DatabaseConnection.getInstance();
-        db.addTransaction(accountId, newTransaction);
+        Repository repository = Repository.getInstance();
+        repository.addTransaction(this.getId(), newTransaction);
     }
 
     // format the date to (MONTH)(DAY)(YEAR) Format and if the day or month is less
@@ -116,16 +102,12 @@ public class Account extends Person {
         }
     }
 
-    public String getAccountId() {
-        return this.accountId;
+    public String getId() {
+        return id;
     }
 
     public String getPassword() {
         return password;
-    }
-
-    public ArrayList<Transaction> getTransactions() {
-        return transactions;
     }
 
     public LocalDate getCreatedAt() {

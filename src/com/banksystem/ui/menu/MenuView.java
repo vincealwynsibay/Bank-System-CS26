@@ -75,15 +75,15 @@ public class MenuView extends JFrame {
                 btnDeposit.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0,
                                 127)));
 
-                // btnTransfer = new JButton("TRANSFER");
-                // btnTransfer.setAlignmentX(Component.CENTER_ALIGNMENT);
-                // btnTransfer.setFocusPainted(false);
-                // btnTransfer.setFont(Resources.createPoppinsFont(Resources.FontWeight.BOLD,
-                // 24));
-                // btnTransfer.setForeground(Resources.PRIMARY);
-                // btnTransfer.setBackground(Resources.LIGHT);
-                // btnTransfer.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0,
-                // 127)));
+                btnTransfer = new JButton("TRANSFER");
+                btnTransfer.setAlignmentX(Component.CENTER_ALIGNMENT);
+                btnTransfer.setFocusPainted(false);
+                btnTransfer.setFont(Resources.createPoppinsFont(Resources.FontWeight.BOLD,
+                                24));
+                btnTransfer.setForeground(Resources.PRIMARY);
+                btnTransfer.setBackground(Resources.LIGHT);
+                btnTransfer.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0,
+                                127)));
 
                 btnTransactions = new JButton("TRANSACTIONS");
                 btnTransactions.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -117,8 +117,8 @@ public class MenuView extends JFrame {
 
                 pnlMenu.add(btnWithdraw);
                 pnlMenu.add(btnDeposit);
-                // pnlMenu.add(btnTransfer);
-                // pnlMenu.add(btnTransactions);
+                pnlMenu.add(btnTransfer);
+                pnlMenu.add(btnTransactions);
                 pnlMenu.add(btnSeeProfile);
                 pnlMenu.add(btnLogout);
                 pnlMain.add(pnlMenu);
@@ -136,7 +136,7 @@ public class MenuView extends JFrame {
                 return btnTransfer;
         }
 
-        public JButton getbtnTransactions() {
+        public JButton getBtnTransactions() {
                 return btnTransactions;
         }
 

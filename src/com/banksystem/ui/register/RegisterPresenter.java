@@ -38,9 +38,21 @@ public class RegisterPresenter {
         Repository repository = Repository.getInstance();
 
         // redirect to login
-        repository.register(view.getNameInput().getText(),
-                Integer.parseInt(view.getAge().getText()), view.getPassword().getText(),
-                view.getAccountType().getSelectedItem().toString());
+        try {
+            boolean isCreatedSuccessfully = repository.register(view.getNameInput().getText(),
+                    Integer.parseInt(view.getAge().getText()), view.getPassword().getText(),
+                    view.getAccountType().getSelectedItem().toString());
+            if (!isCreatedSuccessfully) {
+                view.showMessage("Account already exists");
+                return;
+            }
+
+            view.showMessage("Account created successfully");
+
+        } catch (Exception e) {
+            view.showMessage(e.getMessage());
+            return;
+        }
 
         view.dispose();
         Navigation.login();

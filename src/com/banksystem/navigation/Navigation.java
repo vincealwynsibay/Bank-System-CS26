@@ -9,6 +9,10 @@ import com.banksystem.ui.menu.MenuView;
 import com.banksystem.ui.profile.ProfilePresenter;
 import com.banksystem.ui.profile.ProfileView;
 import com.banksystem.ui.register.RegisterView;
+import com.banksystem.ui.transactions.TransactionsPresenter;
+import com.banksystem.ui.transactions.TransactionsView;
+import com.banksystem.ui.transfer.TransferPresenter;
+import com.banksystem.ui.transfer.TransferView;
 import com.banksystem.ui.withdraw.WithdrawPresenter;
 import com.banksystem.ui.withdraw.WithdrawView;
 import com.banksystem.ui.register.RegisterPresenter;
@@ -43,6 +47,16 @@ public abstract class Navigation {
     public static void deposit() {
         DepositView depositView = new DepositView();
         new DepositPresenter(depositView);
+    }
+
+    public static void transfer() {
+        TransferView transferView = new TransferView();
+        new TransferPresenter(transferView);
+    }
+
+    public static void transactions() {
+        TransactionsView transactionsView = new TransactionsView();
+        new TransactionsPresenter(transactionsView);
     }
 
 }

@@ -14,7 +14,7 @@ public class LoginView extends JFrame {
     private JPanel pnlMain;
     private JLabel lblHeading;
     private JLabel lblSub;
-    private HintTextField txtAccountId;
+    private HintTextField txtName;
     private HintPasswordField txtPassword;
     private RoundedButton btnSubmit;
     private RoundedButton btnRegister;
@@ -51,12 +51,12 @@ public class LoginView extends JFrame {
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
         // Add the text field for email
-        txtAccountId = new HintTextField("Enter UserId", 16);
-        txtAccountId.setAlignmentX(Component.CENTER_ALIGNMENT);
-        txtAccountId.setFont(Resources.createPoppinsFont(Resources.FontWeight.PLAIN, 12));
-        txtAccountId.setMargin(new Insets(6, 6, 6, 6));
-        txtAccountId.setMaximumSize(txtAccountId.getPreferredSize());
-        pnlMain.add(txtAccountId);
+        txtName = new HintTextField("Enter UserId", 16);
+        txtName.setAlignmentX(Component.CENTER_ALIGNMENT);
+        txtName.setFont(Resources.createPoppinsFont(Resources.FontWeight.PLAIN, 12));
+        txtName.setMargin(new Insets(6, 6, 6, 6));
+        txtName.setMaximumSize(txtName.getPreferredSize());
+        pnlMain.add(txtName);
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 6)));
 
@@ -65,7 +65,7 @@ public class LoginView extends JFrame {
         txtPassword.setAlignmentX(Component.CENTER_ALIGNMENT);
         txtPassword.setFont(Resources.createPoppinsFont(Resources.FontWeight.PLAIN, 12));
         txtPassword.setMargin(new Insets(6, 6, 6, 6));
-        txtPassword.setMaximumSize(txtAccountId.getPreferredSize());
+        txtPassword.setMaximumSize(txtName.getPreferredSize());
         pnlMain.add(txtPassword);
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 6)));
@@ -77,7 +77,7 @@ public class LoginView extends JFrame {
         btnSubmit.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 12));
         btnSubmit.setForeground(Resources.LIGHT);
         btnSubmit.setBackground(Resources.PRIMARY);
-        btnSubmit.setMaximumSize(txtAccountId.getPreferredSize());
+        btnSubmit.setMaximumSize(txtName.getPreferredSize());
         pnlMain.add(btnSubmit);
 
         btnRegister = new RoundedButton("No Account Yet? Register Now");
@@ -86,13 +86,13 @@ public class LoginView extends JFrame {
         btnRegister.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 12));
         btnRegister.setForeground(Resources.PRIMARY);
         btnRegister.setBackground(Resources.LIGHT);
-        btnRegister.setMaximumSize(txtAccountId.getPreferredSize());
+        btnRegister.setMaximumSize(txtName.getPreferredSize());
         pnlMain.add(btnRegister);
 
     }
 
-    public JTextField getAccountId() {
-        return txtAccountId;
+    public JTextField getTxtName() {
+        return txtName;
     }
 
     public JTextField getTxtPassword() {

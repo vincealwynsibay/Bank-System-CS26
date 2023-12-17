@@ -15,11 +15,9 @@ import com.banksystem.res.Resources;
 public class ProfileView extends JFrame {
     // TODO: FINALIZE DESIGN
     private JPanel pnlMain;
-    private JPanel pnlTransactions;
     private JLabel lblHeading;
     private JLabel lblSub;
     private JLabel lblName;
-    private JLabel lblAccountId;
     private JLabel lblAge;
     private JLabel lblBalance;
     private JLabel lblAccountType;
@@ -63,14 +61,6 @@ public class ProfileView extends JFrame {
         pnlMain.add(lblSub);
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
-
-        lblAccountId = new JLabel("Account ID: ");
-        lblAccountId.setAlignmentX(Component.CENTER_ALIGNMENT);
-        lblAccountId.setHorizontalAlignment(JLabel.LEFT);
-        lblAccountId.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 16));
-        pnlMain.add(lblAccountId);
-
-        pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
         lblName = new JLabel("Name: ");
         lblName.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblName.setHorizontalAlignment(JLabel.LEFT);
@@ -104,13 +94,13 @@ public class ProfileView extends JFrame {
         lblAccountType.setPreferredSize(lblName.getPreferredSize());
         pnlMain.add(lblAccountType);
 
-        pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
-        pnlTransactions = new JPanel();
-        pnlTransactions.setAlignmentX(Component.CENTER_ALIGNMENT);
-        pnlTransactions.setLayout(new BoxLayout(pnlTransactions, BoxLayout.Y_AXIS));
-        pnlTransactions.setBackground(Color.WHITE);
-        pnlTransactions.setBorder(new EmptyBorder(0, 0, 0, 0));
-        pnlMain.add(pnlTransactions);
+        // pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
+        // pnlTransactions = new JPanel();
+        // pnlTransactions.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // pnlTransactions.setLayout(new BoxLayout(pnlTransactions, BoxLayout.Y_AXIS));
+        // pnlTransactions.setBackground(Color.WHITE);
+        // pnlTransactions.setBorder(new EmptyBorder(0, 0, 0, 0));
+        // pnlMain.add(pnlTransactions);
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
@@ -123,29 +113,27 @@ public class ProfileView extends JFrame {
 
     }
 
-    public void setTransactions(ArrayList<Transaction> transactions) {
+    // public void setTransactions(ArrayList<Transaction> transactions) {
 
-        JLabel lblTransactions = new JLabel("Transactions");
-        lblTransactions.setFont(Resources.createPoppinsFont(Resources.FontWeight.BOLD, 16));
+    // JLabel lblTransactions = new JLabel("Transactions");
+    // lblTransactions.setFont(Resources.createPoppinsFont(Resources.FontWeight.BOLD,
+    // 16));
 
-        pnlTransactions.add(lblTransactions);
-        pnlTransactions.add(Box.createRigidArea(new Dimension(0, 16)));
+    // pnlTransactions.add(lblTransactions);
+    // pnlTransactions.add(Box.createRigidArea(new Dimension(0, 16)));
 
-        for (Transaction transaction : transactions) {
-            JLabel lblTransaction = new JLabel(
-                    transaction.getTransactionType() + " : " + "$" + transaction.getAmount());
-            lblTransaction.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 14));
-            pnlTransactions.add(lblTransaction);
-            pnlTransactions.add(Box.createRigidArea(new Dimension(0, 8)));
-        }
+    // for (Transaction transaction : transactions) {
+    // JLabel lblTransaction = new JLabel(
+    // transaction.getTransactionType() + " : " + "$" + transaction.getAmount());
+    // lblTransaction.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM,
+    // 14));
+    // pnlTransactions.add(lblTransaction);
+    // pnlTransactions.add(Box.createRigidArea(new Dimension(0, 8)));
+    // }
 
-        pnlTransactions.add(Box.createRigidArea(new Dimension(0, 32)));
+    // pnlTransactions.add(Box.createRigidArea(new Dimension(0, 32)));
 
-    }
-
-    public void setAccountId(String accountId) {
-        lblAccountId.setText("Account ID: " + accountId);
-    }
+    // }
 
     public void setName(String name) {
         lblName.setText("Name: " + name);
@@ -173,7 +161,6 @@ public class ProfileView extends JFrame {
 
     public static void main(String[] args) {
         ProfileView view = new ProfileView();
-        view.setAccountId("123456789");
         view.setName("John Doe");
         view.setAge(20);
         view.setBalance(1000);
@@ -189,8 +176,6 @@ public class ProfileView extends JFrame {
         transactions.add(t1);
         transactions.add(t2);
         transactions.add(t3);
-
-        view.setTransactions(transactions);
 
         view.setVisible(true);
     }

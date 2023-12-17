@@ -28,15 +28,15 @@ public class LoginPresenter {
     private void login() {
         repository = Repository.getInstance();
 
-        String accountId = view.getAccountId().getText();
+        String name = view.getTxtName().getText();
         String password = view.getTxtPassword().getText();
 
-        if (accountId.isEmpty() || password.isEmpty()) {
+        if (name.isEmpty() || password.isEmpty()) {
             view.showMessage("Please fill all the fields");
             return;
         }
 
-        if (repository.login(accountId, password)) {
+        if (repository.login(name, password)) {
             System.out.print(repository.getCurrentAccount().getName());
             view.dispose();
             Navigation.menu();

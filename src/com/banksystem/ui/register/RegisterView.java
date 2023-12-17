@@ -134,4 +134,8 @@ public class RegisterView extends JFrame {
     public RoundedButton getBtnLogin() {
         return btnLogin;
     }
+
+    public void showMessage(String message) {
+        JOptionPane.showMessageDialog(this, message);
+    }
 }

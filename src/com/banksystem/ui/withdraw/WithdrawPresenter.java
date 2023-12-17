@@ -33,6 +33,8 @@ public class WithdrawPresenter {
             }
 
             view.showMessage("Withdraw successful");
+            view.dispose();
+            Navigation.menu();
         } catch (NumberFormatException e) {
             view.showMessage("Invalid amount");
         } catch (Exception e) {

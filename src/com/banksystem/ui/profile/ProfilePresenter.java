@@ -34,7 +34,6 @@ public class ProfilePresenter {
             view.setName(currentUser.getName());
             view.setAge(currentUser.getAge());
             view.setBalance(currentUser.getBalance());
-            view.setAccountId(currentUser.getAccountId());
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy");
 
@@ -46,7 +45,6 @@ public class ProfilePresenter {
                 view.setAccountType("Checking Account");
             }
 
-            view.setTransactions(currentUser.getTransactions());
         } else {
             view.dispose();
             Navigation.login();
