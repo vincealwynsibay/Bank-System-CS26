@@ -38,10 +38,12 @@ public class RegisterPresenter {
         Repository repository = Repository.getInstance();
 
         // redirect to login
-        repository.register(view.getAccountType().getSelectedItem().toString(), view.getNameInput().getText(),
-                Integer.parseInt(view.getAge().getText()), view.getPassword().getText());
+        repository.register(view.getNameInput().getText(),
+                Integer.parseInt(view.getAge().getText()), view.getPassword().getText(),
+                view.getAccountType().getSelectedItem().toString());
 
         view.dispose();
+        Navigation.login();
     }
 
     private void redirectToLogin() {

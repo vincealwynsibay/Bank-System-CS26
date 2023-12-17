@@ -13,7 +13,7 @@ import com.banksystem.data.TransactionType;
 import com.banksystem.res.Resources;
 
 public class ProfileView extends JFrame {
-
+    // TODO: FINALIZE DESIGN
     private JPanel pnlMain;
     private JPanel pnlTransactions;
     private JLabel lblHeading;

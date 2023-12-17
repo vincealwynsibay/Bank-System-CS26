@@ -15,10 +15,10 @@ public class SavingsAccount extends Account {
         this.interestRate = 5.0;
     }
 
-    public SavingsAccount(String name, int age, String password, int moneyWithdrawalLimit) {
-        super(name, age, password);
-        this.moneyWithdrawalLimit = moneyWithdrawalLimit;
-        this.interestRate = 5.0;
+    public SavingsAccount(String accountId, String name, int age, String password, double balance, double interestRate,
+            LocalDate createdAt, LocalDate updatedAt) {
+        super(accountId, name, age, password, balance, interestRate, createdAt, updatedAt);
+        this.moneyWithdrawalLimit = 10000;
     }
 
     @Override

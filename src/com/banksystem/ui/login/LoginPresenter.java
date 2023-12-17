@@ -36,9 +36,8 @@ public class LoginPresenter {
             return;
         }
 
-        System.out.println(accountId + " " + password);
-        repository.printAccounts();
         if (repository.login(accountId, password)) {
+            System.out.print(repository.getCurrentAccount().getName());
             view.dispose();
             Navigation.menu();
         } else {

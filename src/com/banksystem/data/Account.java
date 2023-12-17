@@ -2,6 +2,9 @@ package com.banksystem.data;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import com.banksystem.db.DatabaseConnection;
+
 import java.time.LocalDate;
 
 public class Account extends Person {
@@ -25,20 +28,27 @@ public class Account extends Person {
         this.balance = 0;
         this.interestRate = 0.025;
 
-        // sets created at and update at in (MONTH)(DAY)(YEAR) Format and if the day or
-        // month is less than 10, it adds a 0 in front of it (ex. 9 -> 09)
-        // Calendar cal = Calendar.getInstance();
-        // this.created_at = formatDate(cal.get(cal.MONTH)) +
-        // formatDate(cal.get(cal.DAY_OF_MONTH));
-        // this.updated_at = formatDate(cal.get(cal.MONTH)) +
-        // formatDate(cal.get(cal.DAY_OF_MONTH))
-        // + String.valueOf(cal.get(cal.YEAR));
-
         this.created_at = LocalDate.now();
         this.updated_at = LocalDate.now();
 
         this.transactions = new ArrayList<>();
         // this.loans = new ArrayList<>();
+    }
+
+    // para ni siya sa pag load usab sa account gikan sa database
+    public Account(String accountId, String name, int age, String password, double balance, double interestRate,
+            LocalDate createdAt, LocalDate updatedAt) {
+        super(name, age);
+
+        this.accountId = accountId;
+        this.password = password;
+        this.balance = balance;
+        this.interestRate = interestRate;
+
+        this.created_at = createdAt;
+        this.updated_at = updatedAt;
+
+        this.transactions = new ArrayList<>();
     }
 
     // 6 digits number (if single digit pad 5 zeros in front of it)
@@ -53,12 +63,6 @@ public class Account extends Person {
         return accountId;
     }
 
-    public static Account getAccount(String userId) {
-        Account account = new Account(userId, 0, "");
-
-        return account;
-    }
-
     // WITHDRAW money from the account
     public double withdraw(double amount) {
         // if the balance is less than 0, return -1
@@ -67,7 +71,7 @@ public class Account extends Person {
         }
 
         // addTransaction method for the transactions list refer below for more info
-        addTransaction(TransactionType.WITHDRAW, amount);
+        addTransaction(TransactionType.WITHDRAW, -amount);
         this.balance -= amount;
 
         return this.balance;
@@ -78,17 +82,6 @@ public class Account extends Person {
         this.balance += amount;
         addTransaction(TransactionType.DEPOSIT, amount);
     }
-
-    // LOAN money from the bank
-    // public void loan(int amount) {
-    // // uses the Loan class static method to check if the user can loan the amount
-    // if (Loan.getAvailableLoanAmount(created_at) > amount) {
-    // Loan newLoan = new Loan(amount, 1.5);
-    // this.loans.add(newLoan);
-    // this.balance += amount;
-    // addTransaction(TransactionType.LOAN, amount);
-    // }
-    // }
 
     // RECEIVE money from another account (acts like deposit but this is made for
     // transactions list purposes)
@@ -105,6 +98,11 @@ public class Account extends Person {
         this.updated_at = LocalDate.now();
         Transaction newTransaction = new Transaction(type, amount);
         this.transactions.add(newTransaction);
+
+        // update record after every transactions (the balance and the
+        // transactions list)
+        DatabaseConnection db = DatabaseConnection.getInstance();
+        db.addTransaction(accountId, newTransaction);
     }
 
     // format the date to (MONTH)(DAY)(YEAR) Format and if the day or month is less
@@ -133,6 +131,10 @@ public class Account extends Person {
     public LocalDate getCreatedAt() {
         // month / day / year
         return this.created_at;
+    }
+
+    public double getInterestRate() {
+        return interestRate;
     }
 
     public double getBalance() {
