@@ -2,6 +2,7 @@ package com.banksystem.components;
 
 import java.awt.*;
 
+// Custom PasswordField with a hint
 public class HintPasswordField extends RoundedPasswordField {
     private final String hint;
 

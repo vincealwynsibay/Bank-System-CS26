@@ -22,6 +22,7 @@ public class MenuView extends JFrame {
         private JButton btnTransactions;
 
         public MenuView() {
+                // Set the frame preferences
                 setTitle(Config.TITLE);
                 setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
                 this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, (Config.WINDOW_HEIGHT / 2) + 100));
@@ -29,11 +30,11 @@ public class MenuView extends JFrame {
 
                 pnlMain = new JPanel();
                 pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));
-                // pnlMain.setLayout(new GridLayout(2, 2));
                 pnlMain.setBackground(Color.WHITE);
                 pnlMain.setBorder(new EmptyBorder(48, 48, 48, 48));
                 this.getContentPane().add(pnlMain);
 
+                // Add the heading
                 lblHeading = new JLabel("Menu");
                 lblHeading.setFont(Resources.createPoppinsFont(Resources.FontWeight.BOLD, 25));
                 lblHeading.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -41,8 +42,8 @@ public class MenuView extends JFrame {
 
                 pnlMain.add(Box.createRigidArea(new Dimension(10, 4)));
 
-                lblSub = new JLabel(
-                                "<html><div style='text-align: center;'>What do you want to do?</div></html>");
+                // Add the sub heading
+                lblSub = new JLabel("What do you want to do?");
                 lblSub.setFont(Resources.createPoppinsFont(Resources.FontWeight.PLAIN, 14));
                 lblSub.setAlignmentX(Component.CENTER_ALIGNMENT);
                 lblSub.setHorizontalAlignment(JLabel.CENTER);
@@ -55,6 +56,7 @@ public class MenuView extends JFrame {
 
                 pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
+                // Add the withdraw button
                 btnWithdraw = new JButton("WITHDRAW");
                 btnWithdraw.setAlignmentX(Component.CENTER_ALIGNMENT);
                 btnWithdraw.setFocusPainted(false);
@@ -65,6 +67,7 @@ public class MenuView extends JFrame {
                 btnWithdraw.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0,
                                 127)));
 
+                // Add the deposit button
                 btnDeposit = new JButton("DEPOSIT");
                 btnDeposit.setAlignmentX(Component.CENTER_ALIGNMENT);
                 btnDeposit.setFocusPainted(false);
@@ -75,6 +78,7 @@ public class MenuView extends JFrame {
                 btnDeposit.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0,
                                 127)));
 
+                // Add the transfer button
                 btnTransfer = new JButton("TRANSFER");
                 btnTransfer.setAlignmentX(Component.CENTER_ALIGNMENT);
                 btnTransfer.setFocusPainted(false);
@@ -85,6 +89,7 @@ public class MenuView extends JFrame {
                 btnTransfer.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0,
                                 127)));
 
+                // Add the transactions button
                 btnTransactions = new JButton("TRANSACTIONS");
                 btnTransactions.setAlignmentX(Component.CENTER_ALIGNMENT);
                 btnTransactions.setFocusPainted(false);
@@ -95,6 +100,7 @@ public class MenuView extends JFrame {
                 btnTransactions.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0,
                                 127)));
 
+                // Add the see profile button
                 btnSeeProfile = new JButton("SEE PROFILE");
                 btnSeeProfile.setAlignmentX(Component.CENTER_ALIGNMENT);
                 btnSeeProfile.setFocusPainted(false);
@@ -105,6 +111,7 @@ public class MenuView extends JFrame {
                 btnSeeProfile.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0,
                                 127)));
 
+                // Add the logout button
                 btnLogout = new JButton("LOGOUT");
                 btnLogout.setAlignmentX(Component.CENTER_ALIGNMENT);
                 btnLogout.setFocusPainted(false);

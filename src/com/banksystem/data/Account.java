@@ -9,10 +9,10 @@ public class Account extends Person {
     protected String password;
     protected double balance;
     protected double interestRate;
-
     protected LocalDate created_at;
     protected LocalDate updated_at;
 
+    // Account constructor
     public Account(String name, int age, String password) {
         super(name, age);
 
@@ -24,7 +24,7 @@ public class Account extends Person {
         this.updated_at = LocalDate.now();
     }
 
-    // para ni siya sa pag load usab sa account gikan sa database
+    // Account constructor with ID for the database account row
     public Account(String id, String name, int age, String password, double balance, double interestRate,
             LocalDate createdAt, LocalDate updatedAt) {
         super(name, age);
@@ -38,70 +38,62 @@ public class Account extends Person {
         this.updated_at = updatedAt;
     }
 
-    // WITHDRAW money from the account
+    // withdraw money from the Account
     public double withdraw(double amount) {
-        // if the balance is less than 0, return -1
+        // If the balance is less than 0, return -1
         if ((this.balance - amount) < 0) {
             return -1;
         }
 
-        // addTransaction method for the transactions list refer below for more info
-        addTransaction(TransactionType.WITHDRAW, -amount);
-        this.balance -= amount;
+        // add withdraw Transaction to the Transactions Table
+        double newBalance = this.balance - amount;
+        setBalance(newBalance);
 
+        addTransaction(TransactionType.WITHDRAW, -amount);
         return this.balance;
     }
 
-    // DEPOSIT money to the account
+    // deposit money to the Account
     public void deposit(double amount) {
-        this.balance += amount;
+        double newBalance = this.balance + amount;
+        setBalance(newBalance);
+
         addTransaction(TransactionType.DEPOSIT, amount);
     }
 
+    // decrease the balance of the Account and add a transfer transaction to the
+    // Transactions Table (used for adding a new Transaction)
     public double transferMoney(double amount) {
-
         if ((this.balance - amount) < 0) {
             return -1;
         }
 
-        this.balance -= amount;
+        double newBalance = this.balance - amount;
+        setBalance(newBalance);
 
         addTransaction(TransactionType.TRANSFER, -amount);
         return this.balance;
     }
 
-    // RECEIVE money from another account (acts like deposit but this is made for
-    // transactions list purposes)
+    // increase the balance of the Account and add a receive transaction to the
+    // Transactions Table (used for adding a new Transaction)
     public void receiveMoney(double amount) {
-        this.balance += amount;
+        double newBalance = this.balance + amount;
+        setBalance(newBalance);
         addTransaction(TransactionType.RECEIVE, amount);
     }
 
-    // add a transaction. this uses the TransactionType Enum to determine what type
-    // of transaction it is. Mura siyag String gihapon ang enum pero limited lang
-    // siya sa kung unsa na gi define sa enum na mga values like sa transaction type
-    // kay withdraw, deposit, etc lang dapat bawal na Name or something
+    // creates a new Transaction and adds it to the Transactions Table
     protected void addTransaction(TransactionType type, double amount) {
         this.updated_at = LocalDate.now();
         Transaction newTransaction = new Transaction(type, amount);
+        this.updated_at = LocalDate.now();
 
-        // update record after every transactions (the balance and the
-        // transactions list)
         Repository repository = Repository.getInstance();
         repository.addTransaction(this.getId(), newTransaction);
     }
 
-    // format the date to (MONTH)(DAY)(YEAR) Format and if the day or month is less
-    // than 10, it adds a 0 in front of it (ex. 9 -> 09)
-    protected String formatDate(int num) {
-        if (num > 9) {
-            return String.valueOf(num);
-        } else {
-
-            return "0" + String.valueOf(num);
-        }
-    }
-
+    // getters
     public String getId() {
         return id;
     }
@@ -111,7 +103,6 @@ public class Account extends Person {
     }
 
     public LocalDate getCreatedAt() {
-        // month / day / year
         return this.created_at;
     }
 
@@ -123,6 +114,7 @@ public class Account extends Person {
         return this.balance;
     }
 
+    // setters
     public void setBalance(double balance) {
         this.balance = balance;
     }

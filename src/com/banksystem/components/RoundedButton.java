@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
+// Custom Button with rounded corners
 public class RoundedButton extends JButton {
 
     public RoundedButton(String text) {

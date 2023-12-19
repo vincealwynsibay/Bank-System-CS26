@@ -7,11 +7,6 @@ import com.banksystem.repository.Repository;
 public class RegisterPresenter {
     private RegisterView view;
 
-    /**
-     * Constructor
-     * 
-     * @param view view attached to this controller
-     */
     public RegisterPresenter(RegisterView view) {
         this.view = view;
 
@@ -21,27 +16,23 @@ public class RegisterPresenter {
         showView();
     }
 
-    /**
-     * Shows the view
-     */
+    // Show the view
     private void showView() {
         view.pack();
         view.setLocationRelativeTo(null);
         view.setVisible(true);
     }
 
-    /**
-     * Authenticates the user
-     */
+    // Register the user
     private void register() {
-        // create account
         Repository repository = Repository.getInstance();
 
-        // redirect to login
         try {
             boolean isCreatedSuccessfully = repository.register(view.getNameInput().getText(),
                     Integer.parseInt(view.getAge().getText()), view.getPassword().getText(),
                     view.getAccountType().getSelectedItem().toString());
+
+            // Check if the account is created successfully, if not show an error message
             if (!isCreatedSuccessfully) {
                 view.showMessage("Account already exists");
                 return;
@@ -54,6 +45,7 @@ public class RegisterPresenter {
             return;
         }
 
+        // Redirect to the login view
         view.dispose();
         Navigation.login();
     }

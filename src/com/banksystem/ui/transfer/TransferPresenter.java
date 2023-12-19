@@ -8,6 +8,7 @@ public class TransferPresenter {
 
     public TransferPresenter(TransferView view) {
         this.view = view;
+        // Add the action listeners
         this.view.getSubmit().addActionListener(e -> transfer());
         this.view.getBack().addActionListener(e -> redirectToMenu());
         showView();
@@ -18,11 +19,14 @@ public class TransferPresenter {
         Navigation.menu();
     }
 
+    // Transfer the amount
     private void transfer() {
         Repository repository = Repository.getInstance();
 
         try {
             double amount = Double.parseDouble(view.getTransferAmount().getText());
+
+            // Check if the user has sufficient balance, if not show an error message
             if (repository.getCurrentAccount().getBalance() - amount < 0) {
                 view.showMessage("Insufficient balance");
                 return;
@@ -46,10 +50,6 @@ public class TransferPresenter {
     }
 
     private void showView() {
-        view.pack();
-        view.setLocationRelativeTo(null);
-        view.setVisible(true);
-
         Repository repository = Repository.getInstance();
 
         if (repository.getCurrentAccount() == null) {
@@ -59,5 +59,9 @@ public class TransferPresenter {
         }
 
         view.setAvailableBalance(repository.getCurrentAccount().getBalance());
+
+        view.pack();
+        view.setLocationRelativeTo(null);
+        view.setVisible(true);
     }
 }

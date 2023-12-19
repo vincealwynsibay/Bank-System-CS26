@@ -26,47 +26,45 @@ public class DatabaseConnection {
 
             try {
 
-                if (!tablesExist("accounts") || !tablesExist("transactions")) {
-                    String query1 = "CREATE TABLE IF NOT EXISTS accounts (" +
-                            "id INT NOT NULL AUTO_INCREMENT, " +
-                            "name VARCHAR(255) NOT NULL, " +
-                            "age INT NOT NULL, " +
-                            "password VARCHAR(255) NOT NULL, " +
-                            "balance INT NOT NULL, " +
-                            "type VARCHAR(255) NOT NULL, " +
-                            "interestRate DOUBLE NOT NULL, " +
-                            "created_at DATE NOT NULL, " +
-                            "updated_at DATE NOT NULL, " +
-                            "PRIMARY KEY (id)" +
-                            ")";
+                // Create the accounts and transactions tables if they don't exist
+                String accountTableQuery = "CREATE TABLE IF NOT EXISTS accounts (" +
+                        "id INT NOT NULL AUTO_INCREMENT, " +
+                        "name VARCHAR(255) NOT NULL, " +
+                        "age INT NOT NULL, " +
+                        "password VARCHAR(255) NOT NULL, " +
+                        "balance INT NOT NULL, " +
+                        "type VARCHAR(255) NOT NULL, " +
+                        "interestRate DOUBLE NOT NULL, " +
+                        "created_at DATE NOT NULL, " +
+                        "updated_at DATE NOT NULL, " +
+                        "PRIMARY KEY (id)" +
+                        ")";
 
-                    String query2 = "CREATE TABLE IF NOT EXISTS transactions (" +
-                            "id INT NOT NULL AUTO_INCREMENT, " +
-                            "account_id INT NOT NULL, " +
-                            "transaction_type VARCHAR(255) NOT NULL, " +
-                            "amount INT NOT NULL, " +
-                            "created_at DATE NOT NULL, " +
-                            "PRIMARY KEY (id), " +
-                            "FOREIGN KEY (account_id) REFERENCES accounts(id)" +
-                            ")";
+                String transactionTableQuery = "CREATE TABLE IF NOT EXISTS transactions (" +
+                        "id INT NOT NULL AUTO_INCREMENT, " +
+                        "account_id INT NOT NULL, " +
+                        "transaction_type VARCHAR(255) NOT NULL, " +
+                        "amount INT NOT NULL, " +
+                        "created_at DATE NOT NULL, " +
+                        "PRIMARY KEY (id), " +
+                        "FOREIGN KEY (account_id) REFERENCES accounts(id)" +
+                        ")";
 
-                    try (PreparedStatement statement1 = connection.prepareStatement(query1);
-                            PreparedStatement statement2 = connection.prepareStatement(query2)) {
-                        // Execute the queries
-                        statement1.executeUpdate();
-                        statement2.executeUpdate();
-                    }
+                try (PreparedStatement statement1 = connection.prepareStatement(accountTableQuery);
+                        PreparedStatement statement2 = connection.prepareStatement(transactionTableQuery)) {
+                    statement1.executeUpdate();
+                    statement2.executeUpdate();
                 }
             } catch (SQLException e) {
-                e.printStackTrace(); // Handle exceptions appropriately in a real application
+                e.printStackTrace();
             }
 
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace(); // Handle exceptions appropriately in a real application
+            e.printStackTrace();
         }
     }
 
-    // Public method to get the singleton instance
+    // get the Singleton instance
     public static synchronized DatabaseConnection getInstance() {
         if (instance == null) {
             instance = new DatabaseConnection();
@@ -74,26 +72,19 @@ public class DatabaseConnection {
         return instance;
     }
 
-    private boolean tablesExist(String tableName) throws SQLException {
-        DatabaseMetaData metadata = connection.getMetaData();
-        try (ResultSet resultSet = metadata.getTables(null, null, tableName, null)) {
-            return resultSet.next();
-        }
-    }
-
-    // Public method to get the database connection
+    // get the Database Connection
     public Connection getConnection() {
         return connection;
     }
 
-    // Close the connection when needed
+    // close the connection when needed
     public void closeConnection() {
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // Handle exceptions appropriately in a real application
+            e.printStackTrace();
         }
     }
 

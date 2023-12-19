@@ -52,8 +52,8 @@ public class LoginView extends JFrame {
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
-        // Add the text field for email
-        txtName = new HintTextField("Enter UserId", 16);
+        // Add the text field for name
+        txtName = new HintTextField("Enter Name", 16);
         txtName.setAlignmentX(Component.CENTER_ALIGNMENT);
         txtName.setFont(Resources.createPoppinsFont(Resources.FontWeight.PLAIN, 12));
         txtName.setMargin(new Insets(6, 6, 6, 6));
@@ -71,6 +71,7 @@ public class LoginView extends JFrame {
         pnlMain.add(txtPassword);
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 16)));
+
         // Add the submit button
         btnSubmit = new RoundedButton("LOGIN");
         btnSubmit.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -81,6 +82,7 @@ public class LoginView extends JFrame {
         btnSubmit.setMaximumSize(txtName.getPreferredSize());
         pnlMain.add(btnSubmit);
 
+        // Add the navigate button to register view
         btnRegister = new RoundedButton("No Account Yet? Register Now");
         btnRegister.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnRegister.setFocusPainted(false);

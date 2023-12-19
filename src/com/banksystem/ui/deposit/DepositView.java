@@ -19,7 +19,8 @@ public class DepositView extends JFrame {
     private JPanel pnlMain;
 
     public DepositView() {
-        this.setTitle("Deposit");
+        // Set the frame preferences
+        this.setTitle(Config.TITLE);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, (Config.WINDOW_HEIGHT / 2) + 100));
         this.setIconImage(Util.createImageIcon(this, "../../" + Resources.LOGO_PATH).getImage());
@@ -30,6 +31,7 @@ public class DepositView extends JFrame {
         pnlMain.setBorder(new EmptyBorder(48, 48, 48, 48));
         this.getContentPane().add(pnlMain);
 
+        // Add the back button to the menu view
         btnBack = new RoundedButton("BACK TO MENU");
         btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnBack.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM,
@@ -43,11 +45,13 @@ public class DepositView extends JFrame {
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
+        // Add the heading
         lblHeading = new JLabel("Deposit");
         lblHeading.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 25));
         lblHeading.setAlignmentX(Component.CENTER_ALIGNMENT);
         pnlMain.add(lblHeading);
 
+        // Add the sub heading
         lblSub = new JLabel("Enter the amount you want to deposit");
         lblSub.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 12));
         lblSub.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -55,6 +59,7 @@ public class DepositView extends JFrame {
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
+        // Add the text field for name
         txtDepositAmount = new HintTextField("Enter Amount", 16);
         txtDepositAmount.setAlignmentX(Component.CENTER_ALIGNMENT);
         txtDepositAmount.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 16));
@@ -64,6 +69,7 @@ public class DepositView extends JFrame {
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 16)));
 
+        // Add the submit button
         btnSubmit = new RoundedButton("DEPOSIT");
         btnSubmit.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnSubmit.setFont(Resources.createPoppinsFont(Resources.FontWeight.BOLD, 12));

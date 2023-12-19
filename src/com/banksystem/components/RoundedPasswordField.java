@@ -3,6 +3,7 @@ package com.banksystem.components;
 import javax.swing.*;
 import java.awt.*;
 
+// Custom PasswordField with rounded corners
 public class RoundedPasswordField extends JPasswordField {
     private boolean hasBorder;
 

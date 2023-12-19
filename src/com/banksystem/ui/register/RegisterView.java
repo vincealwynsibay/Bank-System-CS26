@@ -1,5 +1,6 @@
 package com.banksystem.ui.register;
 
+import com.banksystem.components.HintPasswordField;
 import com.banksystem.components.HintTextField;
 import com.banksystem.components.RoundedButton;
 import com.banksystem.components.RoundedComboBox;
@@ -17,16 +18,11 @@ public class RegisterView extends JFrame {
     private JLabel lblSub;
     private HintTextField txtName;
     private HintTextField txtAge;
-    private HintTextField txtPassword;
+    private HintPasswordField txtPassword;
     private RoundedButton btnSubmit;
     private RoundedButton btnLogin;
     private RoundedComboBox cmbAccountType;
 
-    /**
-     * Constructor where all of the components of the frame are created
-     * 
-     * @throws HeadlessException
-     */
     public RegisterView() throws HeadlessException {
         // Set the frame preferences
         this.setTitle(Config.TITLE);
@@ -59,7 +55,7 @@ public class RegisterView extends JFrame {
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
-        // Add the text field for email
+        // Add the text field for name
         txtName = new HintTextField("Enter Name", 16);
         txtName.setAlignmentX(Component.CENTER_ALIGNMENT);
         txtName.setFont(Resources.createPoppinsFont(Resources.FontWeight.PLAIN, 12));
@@ -67,6 +63,7 @@ public class RegisterView extends JFrame {
         txtName.setMaximumSize(txtName.getPreferredSize());
         pnlMain.add(txtName);
 
+        // Add the text field for age
         txtAge = new HintTextField("Enter age", 16);
         txtAge.setAlignmentX(Component.CENTER_ALIGNMENT);
         txtAge.setFont(Resources.createPoppinsFont(Resources.FontWeight.PLAIN, 12));
@@ -76,6 +73,7 @@ public class RegisterView extends JFrame {
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 6)));
 
+        // Add the combo box for account type
         cmbAccountType = new RoundedComboBox<>(new String[] { "Checking", "Savings" });
         cmbAccountType.setBackground(Color.WHITE);
         cmbAccountType.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -84,8 +82,9 @@ public class RegisterView extends JFrame {
         pnlMain.add(cmbAccountType);
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 6)));
+
         // Add the text field for password
-        txtPassword = new HintTextField("Enter password", 16);
+        txtPassword = new HintPasswordField("Enter password", 16);
         txtPassword.setAlignmentX(Component.CENTER_ALIGNMENT);
         txtPassword.setFont(Resources.createPoppinsFont(Resources.FontWeight.PLAIN, 12));
         txtPassword.setMargin(new Insets(6, 6, 6, 6));
@@ -104,6 +103,7 @@ public class RegisterView extends JFrame {
         btnSubmit.setMaximumSize(txtName.getPreferredSize());
         pnlMain.add(btnSubmit);
 
+        // Add the navigation button to login
         btnLogin = new RoundedButton("Have an account? Login Now");
         btnLogin.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnLogin.setFocusPainted(false);
@@ -114,7 +114,6 @@ public class RegisterView extends JFrame {
         pnlMain.add(btnLogin);
     }
 
-    // get combo box value
     public JComboBox getAccountType() {
         return cmbAccountType;
     }

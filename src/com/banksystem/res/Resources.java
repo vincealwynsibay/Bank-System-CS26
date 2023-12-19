@@ -4,19 +4,21 @@ import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 
+// Resources class for the application for a more centralized resources
 public abstract class Resources {
     public enum FontWeight {
         PLAIN, MEDIUM, BOLD
     }
 
+    // Colors
     public static final Color PRIMARY = Color.decode("#417DF9");
     public static final Color LIGHT = Color.decode("#FFFFFF");
     public static final Color LIGHT_GRAY = new Color(0, 0, 0, (float) 0.40);
 
-    public static final String DATE_FORMAT = "MMMM dd, yyyy";
-
+    // Image paths
     public static final String LOGO_PATH = "/res/images/logo.png";
 
+    // Set the font
     public static Font createPoppinsFont(FontWeight weight, int size) {
         String fontPath = "";
         int weightCallback = Font.PLAIN;

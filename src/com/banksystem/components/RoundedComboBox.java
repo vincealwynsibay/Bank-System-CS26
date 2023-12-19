@@ -3,6 +3,7 @@ package com.banksystem.components;
 import javax.swing.*;
 import java.awt.*;
 
+// Custom ComboBox with rounded corners
 public class RoundedComboBox<E> extends JComboBox<E> {
 
     public RoundedComboBox() {

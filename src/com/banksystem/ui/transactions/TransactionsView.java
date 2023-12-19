@@ -22,6 +22,7 @@ public class TransactionsView extends JFrame {
     private JScrollPane scrollPane;
 
     public TransactionsView() {
+        // Set the frame preferences
         this.setTitle(Config.TITLE);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, (Config.WINDOW_HEIGHT / 2) + 100));
@@ -34,6 +35,7 @@ public class TransactionsView extends JFrame {
 
         this.getContentPane().add(pnlMain);
 
+        // Add the back button to redirect to the menu view
         btnBack = new RoundedButton("BACK TO MENU");
         btnBack.setAlignmentX(Component.RIGHT_ALIGNMENT);
         btnBack.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 10));
@@ -46,11 +48,13 @@ public class TransactionsView extends JFrame {
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
+        // Add the heading
         lblHeading = new JLabel("Transactions");
         lblHeading.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 25));
         lblHeading.setAlignmentX(Component.CENTER_ALIGNMENT);
         pnlMain.add(lblHeading);
 
+        // Add the sub heading
         lblSub = new JLabel("Here are your transactions");
         lblSub.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 12));
         lblSub.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -58,12 +62,7 @@ public class TransactionsView extends JFrame {
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
-        // pnlTransactions = new JPanel();
-        // pnlTransactions.setLayout(new BoxLayout(pnlTransactions, BoxLayout.Y_AXIS));
-        // pnlTransactions.setBackground(Color.WHITE);
-        // pnlTransactions.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0,
-        // 127)));
-        // pnlMain.add(pnlTransactions);
+        // Add the list of transactions
         scrollPane = new JScrollPane(itemList);
 
         pnlMain.add(scrollPane);

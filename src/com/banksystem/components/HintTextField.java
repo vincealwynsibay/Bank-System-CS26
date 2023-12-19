@@ -2,6 +2,7 @@ package com.banksystem.components;
 
 import java.awt.*;
 
+// Custom TextField with hint
 public class HintTextField extends RoundedTextField {
     private final String hint;
 

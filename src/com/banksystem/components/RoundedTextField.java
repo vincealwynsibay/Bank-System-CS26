@@ -3,6 +3,7 @@ package com.banksystem.components;
 import javax.swing.*;
 import java.awt.*;
 
+// Custom TextField with rounded corners
 public class RoundedTextField extends JTextField {
     private boolean hasBorder;
 

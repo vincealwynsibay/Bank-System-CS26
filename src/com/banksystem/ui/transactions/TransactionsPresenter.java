@@ -20,12 +20,10 @@ public class TransactionsPresenter {
     }
 
     private void showView() {
-        view.pack();
-        view.setLocationRelativeTo(null);
-        view.setVisible(true);
 
         Repository repository = Repository.getInstance();
 
+        // Check if the user is logged in, if not redirect to the login view
         if (repository.getCurrentAccount() == null) {
             view.showMessage("You must select an account first");
             Navigation.login();
@@ -33,6 +31,10 @@ public class TransactionsPresenter {
         }
 
         view.setTransactions(repository.getTransactions());
+
+        view.pack();
+        view.setLocationRelativeTo(null);
+        view.setVisible(true);
 
     }
 

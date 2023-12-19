@@ -20,7 +20,8 @@ public class WithdrawView extends JFrame {
     private JPanel pnlMain;
 
     public WithdrawView() {
-        this.setTitle("Withdraw");
+        // Set the frame preferences
+        this.setTitle(Config.TITLE);
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setMinimumSize(new Dimension(Config.WINDOW_WIDTH / 2, (Config.WINDOW_HEIGHT / 2) + 100));
         this.setIconImage(Util.createImageIcon(this, "../../" + Resources.LOGO_PATH).getImage());
@@ -31,6 +32,7 @@ public class WithdrawView extends JFrame {
         pnlMain.setBorder(new EmptyBorder(48, 48, 48, 48));
         this.getContentPane().add(pnlMain);
 
+        // Add the back button to the menu view
         btnBack = new RoundedButton("BACK TO MENU");
         btnBack.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnBack.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 10));
@@ -43,11 +45,13 @@ public class WithdrawView extends JFrame {
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
+        // Add the heading
         lblHeading = new JLabel("Withdraw");
         lblHeading.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 25));
         lblHeading.setAlignmentX(Component.CENTER_ALIGNMENT);
         pnlMain.add(lblHeading);
 
+        // Add the sub heading
         lblSub = new JLabel("Enter the amount you want to withdraw");
         lblSub.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 12));
         lblSub.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -55,6 +59,7 @@ public class WithdrawView extends JFrame {
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 32)));
 
+        // Add the text field for amount
         txtWithdrawAmount = new HintTextField("Enter Amount", 16);
         txtWithdrawAmount.setAlignmentX(Component.CENTER_ALIGNMENT);
         txtWithdrawAmount.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 16));
@@ -62,6 +67,7 @@ public class WithdrawView extends JFrame {
         txtWithdrawAmount.setMaximumSize(txtWithdrawAmount.getPreferredSize());
         pnlMain.add(txtWithdrawAmount);
 
+        // Add the available balance label
         lblAvailableBalance = new JLabel("Available Balance:  0.00");
         lblAvailableBalance.setFont(Resources.createPoppinsFont(Resources.FontWeight.MEDIUM, 12));
         lblAvailableBalance.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -70,6 +76,7 @@ public class WithdrawView extends JFrame {
 
         pnlMain.add(Box.createRigidArea(new Dimension(0, 16)));
 
+        // Add the submit button
         btnSubmit = new RoundedButton("WITHDRAW");
         btnSubmit.setAlignmentX(Component.CENTER_ALIGNMENT);
         btnSubmit.setFont(Resources.createPoppinsFont(Resources.FontWeight.BOLD, 12));
@@ -77,7 +84,6 @@ public class WithdrawView extends JFrame {
         btnSubmit.setForeground(Resources.LIGHT);
         btnSubmit.setBackground(Resources.PRIMARY);
         btnSubmit.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0, 127)));
-
         Dimension btnSize = new Dimension(txtWithdrawAmount.getPreferredSize().width, 40);
         btnSubmit.setMaximumSize(btnSize);
 
@@ -89,7 +95,7 @@ public class WithdrawView extends JFrame {
     }
 
     public void setAvailableBalance(double amount) {
-        lblAvailableBalance.setText("Available Balance: ₱ " + amount);
+        lblAvailableBalance.setText("Available Balance: $ " + amount);
     }
 
     public RoundedButton getSubmit() {

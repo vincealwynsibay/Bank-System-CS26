@@ -9,6 +9,7 @@ public class MenuPresenter {
     public MenuPresenter(MenuView view) {
         this.view = view;
 
+        // Attach click listener to the view components
         this.view.getBtnWithdraw().addActionListener(e -> redirectToWithdraw());
         this.view.getBtnDeposit().addActionListener(e -> redirectToDeposit());
         this.view.getBtnSeeProfile().addActionListener(e -> redirectToSeeProfile());
@@ -19,6 +20,7 @@ public class MenuPresenter {
         showView();
     }
 
+    // Show the view
     private void showView() {
         view.pack();
         view.setLocationRelativeTo(null);

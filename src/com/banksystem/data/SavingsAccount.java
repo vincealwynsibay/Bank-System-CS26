@@ -5,31 +5,34 @@ import java.time.LocalDate;
 import com.banksystem.repository.Repository;
 
 public class SavingsAccount extends Account {
-    int moneyWithdrawalLimit;
+    private int moneyWithdrawalLimit;
 
+    // SavingsAccount has a moneyWithdrawalLimit and interestRate for limited
+    // withdraw and growing balance
+
+    // SavingsAccount constructor
     public SavingsAccount(String name, int age, String password) {
         super(name, age, password);
         this.moneyWithdrawalLimit = 10000;
         this.interestRate = 5.0;
     }
 
+    // SavingsAccount constructor with ID for the database account row
     public SavingsAccount(String id, String name, int age, String password, double balance, double interestRate,
             LocalDate createdAt, LocalDate updatedAt) {
         super(id, name, age, password, balance, interestRate, createdAt, updatedAt);
         this.moneyWithdrawalLimit = 10000;
     }
 
+    // withdraw money from the SavingsAccount (example of polymorphism)
     @Override
     public double withdraw(double amount) {
-        // example ni sa polymorphism kay mag override ka sa method sa parent class
-        // (Account) para sa SavingsAccount class na naay lain functionality sa withdraw
-        // kay sa nabasahan nako usually naay withdraw limit ang savings account na
-        // gihatag ang bank para mas maka save ka and kato mag tubo lang na
         int totalWithdrawAmount = 0;
 
         int differenceInMonths = getDifferenceInMonths();
 
-        // reset every month
+        // if the difference in months is greater than 1, reset the
+        // moneyWithdrawalLimit
         if (differenceInMonths > 1) {
             this.moneyWithdrawalLimit = 10000;
         }
@@ -55,25 +58,25 @@ public class SavingsAccount extends Account {
 
     @Override
     protected void addTransaction(TransactionType type, double amount) {
-        // update and interest every transaction
+        // update interest every transaction
         updateInterest();
         super.addTransaction(type, amount);
     }
 
-    // updateInterest method to update the balance (kay sa bank na akong nabasahan
-    // kay mag tubo imong money imo lang ibilin sa bank even pag savings)
+    // updateInterest method to update the balance and updated_at
     private double updateInterest() {
 
         // if the difference in months is greater than 1, update the balance and
         // update the updated_at
         if (getDifferenceInMonths() > 1) {
-            this.updated_at = LocalDate.now();
             return this.balance += (this.balance * (interestRate * getDifferenceInMonths()));
         }
 
         return this.balance;
     }
 
+    // get the difference in months from the last updated month and year to the
+    // current month and year
     private int getDifferenceInMonths() {
         int difference = 0;
 
@@ -82,17 +85,14 @@ public class SavingsAccount extends Account {
         int last_updated_month = this.updated_at.getMonthValue();
         LocalDate currentDate = LocalDate.now();
 
-        // get the difference in months from the last updated month and year to the
-        // current month and year para ma compute kung ikapila na ka months na wala na
-        // update ang interest. need ni siya na ing-ani pag compute kay di nato mahimo
-        // na automatic ang pag compute so dapat every transaction nalang na i-update
-        // ang interest
+        // get the difference in months
         int differenceInYear = (currentDate.getYear() - last_updated_year) * 12;
         difference = ((currentDate.getMonthValue() + differenceInYear) - last_updated_month) + 1;
 
         return difference;
     }
 
+    // get the balance of the SavingsAccount (example of polymorphism)
     @Override
     public double getBalance() {
         updateInterest();

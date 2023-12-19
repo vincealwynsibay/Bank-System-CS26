@@ -5,7 +5,6 @@ import java.time.LocalDate;
 public class Transaction {
     private TransactionType transactionType;
     private double amount;
-    // created_at
     private LocalDate created_at;
 
     public Transaction(TransactionType type, double amount) {
